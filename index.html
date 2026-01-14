@@ -1,5 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<script>
+async function updateCounts() {
+  try {
+    const res = await fetch("https://bot-status.disguisedfox94.workers.dev/stats.json");
+    const data = await res.json();
+
+    document.getElementById("bot-servers").textContent = "Trusted by more than " + data.servers + " servers";
+    document.getElementById("users-bot").textContent = "Currently watching over " + data.users + " members";
+	document.getElementById("servers-bot").textContent = "Currently watching over " + data.servers + " servers";
+  } catch (err) {
+    console.error("Failed to fetch counts:", err);
+  }
+}
+	
+updateCounts();
+setInterval(updateCounts, 300_000);
+</script>
 <head>
   
   <meta charset="UTF-8">
@@ -123,7 +141,7 @@
   <div class="container">
     <div class="row mb-5 justify-content-center">
       <div class="col-12 content-head">
-        <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2"><strong>Trusted by more than 66 servers</strong></h3>
+        <h3 id="bot-servers" class="mbr-section-title mbr-fonts-style align-center mb-0 display-2"><strong>Trusted by more than [loading] servers</strong></h3>
         <h5 class="mbr-section-subtitle mbr-fonts-style align-center mb-0 mt-4 display-7">We guarentee our bot is fun, and comptetive. Our members love it!</h5>
       </div>
     </div>
@@ -209,8 +227,8 @@
 
 					<h2 class="mrb-30 mbr-fonts-style display-5"><strong>Our stats on total servers & members</strong></h2>
 <ul class="mrb-40 mbr-fonts-style display-7" data-multilign="">
-    <li><i class="fas fa-server" style="color: #bb44d9; margin-right: 0.5rem;"></i>Currently watching over 66 servers</li>
-    <li><i class="fas fa-users" style="color: #bb44d9; margin-right: 0.5rem;"></i><span style="font-size: 1.3rem;">Currently watching over 1,459 members</span></li>
+    <li><i class="fas fa-server" style="color: #bb44d9; margin-right: 0.5rem;"></i><span id="servers-bot" style="font-size: 1.3rem;">Currently watching over [loading] servers</span></li>
+    <li><i class="fas fa-users" style="color: #bb44d9; margin-right: 0.5rem;"></i><span id="users-bot" style="font-size: 1.3rem;">Currently watching over [loading] members</span></li>
 </ul>
 					<p class="mrb-40 mbr-fonts-style display-7">Think we're lying? Our bot displays current server count and member count in its activity! 😉</p>
 					<div class="d-flex align-items-center mt-40">
