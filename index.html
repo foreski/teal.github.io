@@ -4,7 +4,7 @@
 <script>
 async function updateCounts() {
   try {
-    const res = await fetch("https://bot-status.disguisedfox94.workers.dev/stats.json");
+    const res = await fetch("https://bot-status2.disguisedfox94.workers.dev/stats.json");
     const data = await res.json();
 
     document.getElementById("bot-servers").textContent = "Trusted by more than " + data.servers + " servers";
